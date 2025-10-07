@@ -1,0 +1,23 @@
+.container{
+    height: 30px;
+    width: 900px;
+    border: 2px solid green;
+    background-color: pink;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    border-radius: 10px;
+   
+}
+.class{
+    height: 50px;
+    width: 80px;
+    font-size: 24px;
+   
+}
+a{
+    margin-top: 2px;
+    text-decoration: none;
+    margin-left: 10px;
+    padding-top: 10px;
+}

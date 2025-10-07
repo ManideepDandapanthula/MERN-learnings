@@ -1,0 +1,1 @@
+alert("There is something wrong with ur system ")

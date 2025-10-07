@@ -1,0 +1,16 @@
+let para = document.createElement('p');
+let body = document.querySelector('body');
+para.innerText = "manideep dandapanthula and i am from warangal hanamkonda";
+body.appendChild(para);
+para.style = "color: red";
+let h3 = document.createElement('h3');
+body.appendChild(h3);
+h3.innerText = "I am blue";
+h3.style = "color: blue";
+let div = document.createElement('div');
+div.style.border = "2px solid black";
+div.style.backgroundColor = "pink";
+let h1 = document.createElement('h1');
+h1.innerText = "i am div";
+body.appendChild(div);
+div.appendChild(h1);

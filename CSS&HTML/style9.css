@@ -1,0 +1,34 @@
+div{
+    height: 100px;
+    width: 100px;
+    background-color: black;
+    margin: 10px;
+    display: inline-block;
+    border: 2px solid black;
+    position: static;
+}
+#static{
+    
+   background-color: black;
+    position: static;
+    top: 100px;
+    left: 100px;
+}
+#rel{
+    background-color: blue;
+    position: relative;
+    top: 100px;
+    left: 100px;
+}
+#abs{
+    background-color: orange;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+}
+#fix{
+    background-color: orangered;
+    position: fixed;
+    top: 100px;
+    left: 100px;
+}

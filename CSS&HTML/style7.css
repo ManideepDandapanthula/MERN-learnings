@@ -1,0 +1,8 @@
+div{
+    height: 7cm;
+    width: 7cm;
+    background-color: cyan;
+    margin: 20px auto;
+    background-image: url("./images/chicken.avif");
+    background-size: cover;
+}
