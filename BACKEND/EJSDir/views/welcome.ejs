@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome Page</title>
+  <style>
+    /* Basic reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body styling */
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #74ABE2, #5563DE);
+      font-family: "Poppins", sans-serif;
+      color: #fff;
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    /* Main container */
+    .welcome-container {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 50px 60px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    /* Hover effect */
+    .welcome-container:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Headline */
+    .welcome-container h1 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+
+    /* Paragraph */
+    .welcome-container p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      color: #f0f0f0;
+      line-height: 1.6;
+    }
+
+    /* Button */
+    .explore-btn {
+      background: #fff;
+      color: #5563DE;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .explore-btn:hover {
+      background: #5563DE;
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      .welcome-container {
+        width: 90%;
+        padding: 40px 20px;
+      }
+
+      .welcome-container h1 {
+        font-size: 2rem;
+      }
+
+      .welcome-container p {
+        font-size: 1rem;
+      }
+
+      .explore-btn {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="welcome-container">
+    <h1>Welcome to Our Website</h1>
+    <p>We’re excited to have you here. Explore, connect, and enjoy your experience!</p>
+    <button class="explore-btn">Get Started</button>
+  </div>
+</body>
+</html>
