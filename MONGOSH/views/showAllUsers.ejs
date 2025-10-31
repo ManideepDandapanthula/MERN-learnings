@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users Page</title>
+    <style>
+        table,th{
+            border: 2px solid black;
+        }
+    tr,td{
+            border: 2px solid red;
+        }
+        
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+        <th>Id</th>
+        <th>name</th>
+        <th>email</th>
+        <th>age</th>
+        </tr>
+       
+            <%for(let user of users){%>
+                <tr>
+                <td><%=user._id%></td>
+                <td><%=user.name%></td>
+                <td><%=user.email%></td>
+                <td><%=user.age%></td>
+                <td><form action="/users/<%=user._id%>/edit" method="GET"><BUTTon>update </BUTTon></form>
+                </tr></td>
+           <% }%>
+      
+    </table>
+</body>
+</html>
