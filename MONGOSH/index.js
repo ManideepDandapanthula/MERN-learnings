@@ -15,10 +15,13 @@ mongoose
   .then(() => {
     console.log(`Connected to MongoDB`);
     const User = require("./schemas/user");
-    app.get("/", (req, res) => {
-     
+    app.get("/", async (req, res) => {
 
-   res.render("welcome.ejs");
+      const users = await User.find();
+      res.render("showAllUsers.ejs",{users});
+    });
+    app.get("/users/adduser", async (req,res)=>{
+      res.render("welcome.ejs");
     });
  
     app.post("/", async (req, res) => {
@@ -33,22 +36,22 @@ mongoose
         await newUser.save();
         console.log("Successfully added");
        
-        res.redirect("/users");
+        res.redirect("/");
       } catch (err) {
         console.error("❌ Error saving user:", err);
         res.status(500).send("Database error");
       }
     });
 
-    app.get("/users",async (req,res)=>{
-      const users = await User.find();
-      if(users){
-       res.render("showAllUsers.ejs",{users});
-      }
-      else{
-        console.log(`There was an error while getting the data`);
-      }
-    });
+    // app.get("/users",async (req,res)=>{
+    //   const users = await User.find();
+    //   if(users){
+    //    res.render("showAllUsers.ejs",{users});
+    //   }
+    //   else{
+    //     console.log(`There was an error while getting the data`);
+    //   }
+    // });
 
 // GET route to render update page
 app.get("/users/:id/edit", async (req, res) => {
@@ -67,12 +70,17 @@ app.get("/users/:id/edit", async (req, res) => {
   }
 });
 
+// User.updateMany({age:{$gt:22}},{$set:{name:"manideep"}})
+
 // PATCH route to update the user
 app.patch("/users/edit/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const { name, email } = req.body;
-
+    const existuser = await User.findOne({email});
+    if(existuser){
+      res.send(`User already exist`);
+    }
     if (!id) {
       console.log("User ID is missing");
       return res.status(400).send("User ID missing");
