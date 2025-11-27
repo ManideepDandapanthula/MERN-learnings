@@ -18,6 +18,8 @@
                 </div>
                 <p>To:<%=chat.to%></p>
                 <form action="/users/<%=chat._id%>/edit"><button>Edit the user</button></form>
+                <form action="/users/<%=chat._id%>"><button>Show chat</button></form>
+                <form action="/users/<%=chat._id%>?_method=DELETE"  method="POST" class="btn btn-delete"><button>Delete</button></form>
         </div>
     <%}%>
 </body>

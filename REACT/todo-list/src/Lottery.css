@@ -1,0 +1,13 @@
+.ticket{
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+}
+body {
+  display: flex;
+  justify-content: center;   /* horizontal center */
+  align-items: center;       /* vertical center */
+  height: 100vh;             /* full screen height */
+  margin: 0;                 /* remove default margin */
+  text-align: center;        /* center text (optional) */
+}
