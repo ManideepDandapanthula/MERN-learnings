@@ -1,0 +1,104 @@
+<%layout("./layouts/boylerplate.ejs") %>
+<body>
+    <div class="row">
+        <div class="col-8 offset-2">
+
+     <h3><%=place.title%></h3>
+    <div class="card col-6 offset-3">
+    <img src="<%=place.image.url%>" class="card-img-top show-img" alt="...">
+  <div class="card-body">
+    <!-- <p class="card-text"><%= place.title %></p> -->
+  </div>
+    </div>
+    <br>
+    <p><b>Place Owner:</b><i><%= place.owner.username%></i>
+    <p><b>Place descreption:</b><br><%=place.description%></p>
+    
+    <p><b>Place Price:</b><%=place.price%></p>
+    <p><b>Place Location:</b><%=place.location%></p><br>
+    <p><b>Place Country:</b><%=place.country%></p>
+    <div class=" btn-cls">
+      <% if(currentUser && currentUser._id.equals(place.owner._id )){ %>
+        <a href="/listing/<%=place._id%>/edit" class="btn btn-success  " type="button">Edit</a>
+       <form action="/listing/delete/<%=place._id%>?_method=DELETE" method="POST">
+        <button class="btn btn-danger offset-1 ">Delete</button>
+       </form>
+        <%}%>
+    </div>
+    <hr>
+    <% if (currentUser) { %>
+     <div class="col-6 ">
+      <h4 class="review-headding">Leave a review</h4>
+      
+      <form action="/listing/<%=place._id%>/reviews" method="POST"  >
+       <div>
+         <label for="rating" class="rating-bar">Rating</label>
+        <input type="range" min="1" max="5" id="rating" name="rating" class="form-range">
+       </div>
+       <!-- <fieldset class="starability-fade">
+  <legend>First rating:</legend>
+  <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+  <input type="radio" id="first-rate1" name="rating" value="1" />
+  <label for="first-rate1" title="Terrible">1 star</label>
+  <input type="radio" id="first-rate2" name="rating" value="2" />
+  <label for="first-rate2" title="Not good">2 stars</label>
+  <input type="radio" id="first-rate3" name="rating" value="3" />
+  <label for="first-rate3" title="Average">3 stars</label>
+  <input type="radio" id="first-rate4" name="rating" value="4" />
+  <label for="first-rate4" title="Very good">4 stars</label>
+  <input type="radio" id="first-rate5" name="rating" value="5" />
+  <label for="first-rate5" title="Amazing">5 stars</label>
+</fieldset> -->
+      <div>
+      <label for="comment">Comment</label>
+      <textarea name="reviewcomment" id="commnet" cols="80" rows="5" required></textarea>
+    </div>
+    <button>Submmit</button>
+    </form>
+    </div>
+    <% } %>
+     <% if (listing.reviews && listing.reviews.length > 0) { %>
+      
+   
+      <p><b>All Reviews</b></p>
+      
+      <div class="row">
+        <%for(review of place.reviews){%>
+      
+             <div class="card col-6 ">
+                   <div class="card-body">
+                     <h5 class="card-title"><%= review.author.username %></h5>
+                     <p class="card-text"><%= review.comment%></p>
+                     <p>
+                     <% for (let i = 0; i < review.rating; i++) { %>
+                            ⭐
+                      <% } %>
+                     </p>
+
+                   </div> 
+                   <form action="/listing/<%=place._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST"><button class="btn btn-danger">DELETE</button></form>
+             </div>
+        <%}%>
+      </div>
+          <% } %>
+    </div>
+    </div>
+    <div class="col-8 offset-2 mb-3">
+    <h3>Where you'll be</h3>
+    <div id="map"></div>
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoibWFuaWRlZXBtYW5keSIsImEiOiJjbWs3czdtczAxNGZ5M2VzYzExeDMyN3JmIn0.ew-0-bDByU1vWOK7ZDMVAg';
+      const coordinates = <%- JSON.stringify(listing.geometry.coordinates) %>;
+    const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        center: coordinates, // starting position [lng, lat]. Note that lat must be set between -90 and 90
+        zoom: 9 // starting zoom 17.9961856
+    });
+      new mapboxgl.Marker({ color: "red" })
+    .setLngLat(coordinates)
+    .setPopup(new mapboxgl.Popup({offset: 25})
+    .setHTML("<h41>This is the exact location shared in the listing</h4>"))
+    .addTo(map);
+</script>
+    </div>
+</body>

@@ -1,0 +1,38 @@
+
+<%layout("./layouts/boylerplate.ejs") %>
+<body>
+
+  <div class="auth-container">
+    <h2>Login</h2>
+    <div class="container">
+          <% if (error && error.length) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        User already exist login here/ register a newuser Down
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+       <% } %>
+    </div>
+    <% if (error && error.length) { %>
+      <p class="error"><%= error %></p>
+    <% } %><form action="/user/loginsite" method="POST">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input  class="form-control"  aria-describedby="emailHelp"  type="text" 
+          id="email" 
+          name="email" 
+          required 
+          placeholder="Enter email">
+   
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1"type="password" 
+          id="password" 
+          name="password" 
+          required 
+          placeholder="Enter password">
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</body>

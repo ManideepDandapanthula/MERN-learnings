@@ -1,0 +1,48 @@
+<%layout("./layouts/boylerplate.ejs") %> 
+<body>
+        <div class="row">
+                <div class="col-8 offset-2">
+    <form action="/listing/addedlist" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
+        <div class="mb-3">
+              <label for="title" class="form-lable">Title</label>
+              <input type="text" name="listing[title]" placeholder="enter the title" class="form-control" required><br>
+              <div class="valid-feedback">That looks good!!</div>
+              <div class="invalid-feedback">oops enter the correct title⚠️</div>
+        </div>
+        <div class="mb-3">
+              <label for="title" class="form-lable">Description</label>
+              <input type="text" name="listing[description]" placeholder="enter the description" class="form-control" required><br>
+              <div class="valid-feedback">That looks good!!</div>
+              <div class="invalid-feedback">oops enter the correct description⚠️</div>
+        </div>
+       <!-- <div>
+               <label for="title" class="form-lable">Image Url</label>
+               <input type="text" name="listing[image]" placeholder="enter the Image url" class="form-control" required><br>
+       </div> -->
+       <div>
+               <label for="title" class="form-lable">Image File</label>
+               <input type="file" name="listing[image]" class="form-control"  required><br>
+       </div>
+    
+         <div class="mb-3">
+               <label for="title" class="form-lable">Price</label>
+               <input type="text" name="listing[price]" placeholder="enter the price" class="form-control" required><br>
+               <div class="valid-feedback">That looks good!!</div>
+               <div class="invalid-feedback">oops enter the correct ₹ price⚠️</div>
+       </div>
+        <div class="mb-3 ">
+               <label for="title" class="form-lable">Country</label>
+               <input type="text" name="listing[country]" placeholder="enter the country" class="form-control" required><br>
+       </div>
+     
+        <div class="mb-3">
+               <label for="title" class="form-lable">Location</label>
+               <input type="text" name="listing[location]" placeholder="enter the location" class="form-control"><br>
+        </div>
+      
+        <button class="btn btn-dark">Add Place</button>
+    </form>
+    
+</body>
+</div>
+</div>

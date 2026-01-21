@@ -1,0 +1,174 @@
+<% layout("./layouts/boylerplate.ejs") %>
+
+<style>
+  #filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .filter {
+    text-align: center;
+    margin-left: 2rem;
+    opacity: 0.6;
+  }
+
+  .filter:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  .filter p {
+    font-size: 0.8rem;
+  }
+
+  .tax-info {
+    display: none;
+    font-size: 0.85rem;
+    color: gray;
+  }
+
+  .switch {
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 2rem;
+    margin-left: 2cm;
+    display: flex;
+    align-items: center;
+    padding: 4px 14px;
+  }
+
+  .listing-link {
+    text-decoration: none;
+    color: inherit;
+  }
+</style>
+
+<body>
+
+  <% if (locals.success && locals.success.length) { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <%= locals.success %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+  <% } %>
+
+  <!-- FILTERS -->
+  <div id="filters">
+    <div class="filter">
+      <div><i class="fa-solid fa-fire"></i></div>
+      <p>Trending</p>
+    </div>
+
+    <div class="filter">
+      <div><i class="fa-solid fa-bed"></i></div>
+      <p>Rooms</p>
+    </div>
+
+    <div class="filter">
+      <div><i class="fa-solid fa-mountain-city"></i></div>
+      <p>Iconic Cities</p>
+    </div>
+
+    <div class="filter">
+      <div><i class="fa-solid fa-mountain"></i></div>
+      <p>Mountains</p>
+    </div>
+
+    <div class="filter">
+      <div><i class="fa-solid fa-castle"></i></div>
+      <p>Castle</p>
+    </div>
+
+    <div class="filter">
+      <div><i class="fa-solid fa-person-swimming"></i></div>
+      <p>Amazing pools</p>
+    </div>
+
+    <div class="filter">
+      <div><i class="fa-solid fa-campground"></i></div>
+      <p>Camping</p>
+    </div>
+
+    <div class="filter">
+      <div><i class="fa-solid fa-cow"></i></div>
+      <p>Farms</p>
+    </div>
+
+    <div class="filter">
+      <div><i class="fa-regular fa-snowflake"></i></div>
+      <p>Arctic</p>
+    </div>
+
+    <!-- GST SWITCH -->
+    <div class="switch">
+      <div class="form-check-reverse form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          role="switch"
+          id="switchCheckDefault"
+        />
+        <label class="form-check-label" for="switchCheckDefault">
+          Display Taxes
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- LISTINGS -->
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-4">
+    <% for (let list of allListing) { %>
+      <a href="/listing/<%= list._id %>" class="listing-link">
+        <div class="card col mb-4" style="width: 20rem;">
+          <div class="card-img-overlay">Nice House</div>
+
+          <img
+            src="<%= list.image.url %>"
+            class="card-img-top"
+            alt="listing image"
+          />
+
+          <div class="card-body">
+            <p class="card-text">
+              <strong><%= list.title %></strong><br />
+
+              &#8377;
+              <span class="price" data-price="<%= list.price %>">
+                <%= list.price %>
+              </span>
+              / Night
+              <br />
+
+              <span class="tax-info">+18% GST included</span>
+            </p>
+          </div>
+        </div>
+      </a>
+    <% } %>
+  </div>
+
+  <!-- GST TOGGLE SCRIPT -->
+  <script>
+    const toggleButton = document.getElementById("switchCheckDefault");
+
+    toggleButton.addEventListener("change", () => {
+      const prices = document.getElementsByClassName("price");
+      const taxInfos = document.getElementsByClassName("tax-info");
+
+      for (let i = 0; i < prices.length; i++) {
+        const basePrice = Number(prices[i].dataset.price);
+
+        if (toggleButton.checked) {
+          const gstPrice = Math.round(basePrice * 1.18);
+          prices[i].innerText = gstPrice;
+          taxInfos[i].style.display = "inline";
+        } else {
+          prices[i].innerText = basePrice;
+          taxInfos[i].style.display = "none";
+        }
+      }
+    });
+  </script>
+
+</body>
