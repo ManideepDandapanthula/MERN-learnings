@@ -14,7 +14,7 @@ const dburl = process.env.ATLAS_URL;
 const store = MongoStore.create({
   mongoUrl: dburl,
   crypto: {
-    secret: "not a big secret",
+    secret: process.env.SECRET,
   },
   touchAfter: 24 * 3600, // ✅ correct key
 });
@@ -25,7 +25,7 @@ store.on("error", () => {
 
 const sessionOptions = {
   store,
-  secret: "topSecret",
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: {
